@@ -1,0 +1,25 @@
+﻿@page
+@model PracticDI.Pages.View.IndexModel
+@{
+    ViewData["Title"] = "Человеки";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Birth Day</th>
+            <th>Other Information</th>
+        </tr>
+    </thead>
+    @foreach (var p in Model.person)
+    {
+        <tr>
+            <td>@p.Name</td>
+            <td>@p.Surname</td>
+            <td>@p.BirthDay</td>
+            <td>@p.OtherInfo</td>
+        </tr>
+    }
+</table>
