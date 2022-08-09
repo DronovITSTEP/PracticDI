@@ -7,7 +7,8 @@ using PracticDI.Repositories.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages().AddRazorPagesOptions(option =>
+{ option.Conventions.AddPageRoute("/view", ""); });
 
 builder.Services.AddTransient<IRepository, Repository>();
 

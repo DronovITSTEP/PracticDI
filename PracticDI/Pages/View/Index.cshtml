@@ -1,9 +1,15 @@
-﻿@page
+﻿@page "/view"
 @model PracticDI.Pages.View.IndexModel
 @{
     ViewData["Title"] = "Человеки";
 }
+<form method="post">
+    <button type="submit" asp-page-handler="saveFile">Save File</button>
+</form>
 
+<div class="text-center">
+    <h1 class="display-4">Человеки</h1>
+</div>
 <table>
     <thead>
         <tr>
@@ -13,13 +19,49 @@
             <th>Other Information</th>
         </tr>
     </thead>
-    @foreach (var p in Model.person)
+    @foreach (var p in Model.persons)
     {
         <tr>
             <td>@p.Name</td>
             <td>@p.Surname</td>
             <td>@p.BirthDay</td>
             <td>@p.OtherInfo</td>
+            <td>
+                <form method="post">
+                    <button type="submit" asp-page-handler="delete" asp-route-id="@p.Id">DELETE</button>
+                </form>
+            </td>
         </tr>
     }
 </table>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="person.Name" class="control-label"></label>
+                <input asp-for="person.Name" class="form-control" />
+                <span asp-validation-for="person.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="person.Surname" class="control-label"></label>
+                <input asp-for="person.Surname" class="form-control" />
+                <span asp-validation-for="person.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="person.BirthDay" class="control-label"></label>
+                <input asp-for="person.BirthDay" class="form-control" />
+                <span asp-validation-for="person.BirthDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="person.OtherInfo" class="control-label"></label>
+                <input asp-for="person.OtherInfo" class="form-control" />
+                <span asp-validation-for="person.OtherInfo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -6,6 +6,7 @@ namespace PracticDI.Repositories.Interfaces
     {
         List<Person> GetPersons();
         void AddPerson(Person person);
-        void DeletePerson(Person person);
+        void DeletePerson(int id);
+        void SavePerson();
     }
 }

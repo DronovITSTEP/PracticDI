@@ -9,14 +9,35 @@ namespace PracticDI.Pages.View
     {
         private readonly IRepository _repository;
 
+        [BindProperty]
+        public Person person { get; set; }
         public IndexModel(IRepository repository)
         {
             _repository = repository;
         }
-        public List<Person> person { get; set; }
+        public List<Person> persons { get; set; }
         public void OnGet()
         {
-            _repository.GetPersons();
+            persons = _repository.GetPersons();
         }
+
+        public IActionResult OnPost()
+        {
+            _repository.AddPerson(person);
+            return RedirectToPage("");
+        }
+
+        public IActionResult OnPostDelete()
+        {
+            _repository.DeletePerson(person.Id);
+            return RedirectToPage("");
+        }
+
+        public IActionResult OnPostSaveFile()
+        {
+            _repository.SavePerson();
+            return RedirectToPage("");
+        }
+
     }
 }
